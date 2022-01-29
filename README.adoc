@@ -1,0 +1,23 @@
+== RabbitMQ Demo
+
+Just a simple use case with enough "security" to show case something more "realistic".
+
+== Usage
+
+Get https://github.com/a-inacio/self-signed-certificates[some certificates] into `data/certificates`.
+Run `docker compose up`.
+
+== TODO
+
+Check and document an health check to the broker. e.g.:
+
+.docker-compose.yml
+[source,yml]
+---
+#...
+healthcheck:
+  test: ["CMD-SHELL", "rabbitmq-diagnostics -q ping"]
+  interval: 30s
+  timeout: 10s
+  retries: 10
+---

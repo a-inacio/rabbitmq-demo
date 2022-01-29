@@ -1,0 +1,18 @@
+services:
+    rabbitmq:
+      image: bitnami/rabbitmq:3.8.27
+      volumes:
+        - ./data/persistence:/bitnami
+        - ./data/certificates:/data
+      ports:
+        - 5671:5671
+        - 15671:15671
+      environment:
+        # better keeping these here as a reference:
+        RABBITMQ_NODE_PORT_NUMBER: "5672"
+        RABBITMQ_NODE_SSL_PORT_NUMBER: "5671"
+        RABBITMQ_MANAGEMENT_PORT_NUMBER: "15672"
+      env_file:
+        - settings.env
+        - secrets.env
+      restart: always
